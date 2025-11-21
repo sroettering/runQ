@@ -1,6 +1,6 @@
 # RunQ
 
-[![CI](https://github.com/YOUR_USERNAME/runq/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/runq/actions/workflows/ci.yml)
+[![CI](https://github.com/sroettering/runq/actions/workflows/ci.yml/badge.svg)](https://github.com/sroettering/runq/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/runq.svg)](https://www.npmjs.com/package/runq)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
