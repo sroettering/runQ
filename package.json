@@ -1,13 +1,13 @@
 {
-  "name": "runq",
+  "name": "worker-queue",
   "description": "A lightweight, flexible task queue for Node.js and TypeScript with configurable concurrency control",
-  "homepage": "https://github.com/sroettering/runq#readme",
+  "homepage": "https://github.com/sroettering/WorkerQueue#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sroettering/runq.git"
+    "url": "git+https://github.com/sroettering/WorkerQueue.git"
   },
   "bugs": {
-    "url": "https://github.com/sroettering/runq/issues"
+    "url": "https://github.com/sroettering/WorkerQueue/issues"
   },
   "author": "sroettering",
   "license": "MIT",
@@ -41,6 +41,7 @@
   },
   "keywords": [
     "queue",
+    "pool",
     "task-queue",
     "concurrency",
     "async",

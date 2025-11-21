@@ -1,18 +1,18 @@
 // Test ESM compatibility
-import { RunQ } from './dist/index.js';
+import { WorkerQueue } from './dist/index.js';
 
 console.log('🧪 Testing ESM compatibility...\n');
 
 try {
   // Test import
-  if (typeof RunQ !== 'function') {
-    throw new Error('RunQ is not a function');
+  if (typeof WorkerQueue !== 'function') {
+    throw new Error('WorkerQueue is not a function');
   }
   console.log('✅ ESM import successful');
 
   // Test instantiation
-  const queue = new RunQ({ concurrency: 2 });
-  console.log('✅ RunQ instance created');
+  const queue = new WorkerQueue({ concurrency: 2 });
+  console.log('✅ WorkerQueue instance created');
 
   // Test methods exist
   const methods = ['enqueue', 'enqueueBatch', 'pause', 'resume'];

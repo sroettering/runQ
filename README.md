@@ -1,7 +1,7 @@
-# RunQ
+# WorkerQueue
 
-[![CI](https://github.com/sroettering/runq/actions/workflows/ci.yml/badge.svg)](https://github.com/sroettering/runq/actions/workflows/ci.yml)
-[![npm version](https://badge.fury.io/js/runq.svg)](https://www.npmjs.com/package/runq)
+[![CI](https://github.com/sroettering/worker-queue/actions/workflows/ci.yml/badge.svg)](https://github.com/sroettering/worker-queue/actions/workflows/ci.yml)
+[![npm version](https://badge.fury.io/js/worker-queue.svg)](https://www.npmjs.com/package/worker-queue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A lightweight, flexible task queue for Node.js and TypeScript that executes async tasks with configurable concurrency control.
@@ -18,7 +18,7 @@ A lightweight, flexible task queue for Node.js and TypeScript that executes asyn
 ## Installation
 
 ```bash
-npm install runq
+npm install worker-queue
 ```
 
 ## Usage
@@ -26,10 +26,10 @@ npm install runq
 ### Basic Example
 
 ```typescript
-import { RunQ } from 'runq';
+import { WorkerQueue } from 'worker-queue';
 
 // Create a queue with a concurrency of 3
-const queue = new RunQ({ concurrency: 3 });
+const queue = new WorkerQueue({ concurrency: 3 });
 
 // Define an async task
 const task = async () => {
@@ -45,9 +45,9 @@ console.log(result);
 ### Batch Processing
 
 ```typescript
-import { RunQ } from 'runq';
+import { WorkerQueue } from 'worker-queue';
 
-const queue = new RunQ({ concurrency: 5 });
+const queue = new WorkerQueue({ concurrency: 5 });
 
 // Create multiple tasks
 const tasks = [
@@ -64,9 +64,9 @@ console.log(results); // Array of all results
 ### FIFO vs LIFO Queueing
 
 ```typescript
-import { RunQ } from 'runq';
+import { WorkerQueue } from 'worker-queue';
 
-const queue = new RunQ({ concurrency: 1 });
+const queue = new WorkerQueue({ concurrency: 1 });
 
 // FIFO (First-In-First-Out) - default behavior
 await queue.enqueue(task1, 'FIFO'); // Executes first
@@ -82,9 +82,9 @@ await queue.enqueue(task3, 'LIFO'); // Executes first
 ### Pause and Resume
 
 ```typescript
-import { RunQ } from 'runq';
+import { WorkerQueue } from 'worker-queue';
 
-const queue = new RunQ({ concurrency: 2 });
+const queue = new WorkerQueue({ concurrency: 2 });
 
 // Enqueue some tasks
 queue.enqueue(task1);
@@ -100,9 +100,9 @@ queue.resume();
 ### Error Handling
 
 ```typescript
-import { RunQ } from 'runq';
+import { WorkerQueue } from 'worker-queue';
 
-const queue = new RunQ({ concurrency: 3 });
+const queue = new WorkerQueue({ concurrency: 3 });
 
 // Single task error handling
 try {
@@ -124,10 +124,10 @@ try {
 ### TypeScript Support
 
 ```typescript
-import { RunQ } from 'runq';
+import { WorkerQueue } from 'worker-queue';
 
 // Strongly typed queue
-const queue = new RunQ<string>({ concurrency: 5 });
+const queue = new WorkerQueue<string>({ concurrency: 5 });
 
 // Type-safe tasks
 const task = async (): Promise<string> => {
@@ -139,7 +139,7 @@ const result: string = await queue.enqueue(task);
 
 ## API Reference
 
-### `new RunQ(options)`
+### `new WorkerQueue(options)`
 
 Creates a new task queue instance.
 
@@ -148,7 +148,7 @@ Creates a new task queue instance.
 
 **Example:**
 ```typescript
-const queue = new RunQ({ concurrency: 10 });
+const queue = new WorkerQueue({ concurrency: 10 });
 ```
 
 ### `enqueue(task, queueingBehavior?)`
@@ -206,7 +206,7 @@ queue.resume();
 ### Rate Limiting API Requests
 
 ```typescript
-const queue = new RunQ({ concurrency: 3 });
+const queue = new WorkerQueue({ concurrency: 3 });
 
 const userIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -221,7 +221,7 @@ const users = await queue.enqueueBatch(tasks);
 ### Database Operations
 
 ```typescript
-const queue = new RunQ({ concurrency: 5 });
+const queue = new WorkerQueue({ concurrency: 5 });
 
 const records = await queue.enqueueBatch([
   () => db.users.create({ name: 'Alice' }),
@@ -233,7 +233,7 @@ const records = await queue.enqueueBatch([
 ### File Processing
 
 ```typescript
-const queue = new RunQ({ concurrency: 4 });
+const queue = new WorkerQueue({ concurrency: 4 });
 
 const files = ['file1.txt', 'file2.txt', 'file3.txt'];
 
@@ -251,7 +251,7 @@ await queue.enqueueBatch(tasks);
 
 ## License
 
-MIT © runq contributors
+MIT © worker-queue contributors
 
 ## Contributing
 

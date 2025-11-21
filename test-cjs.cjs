@@ -1,18 +1,18 @@
 // Test CommonJS compatibility
-const { RunQ } = require('./dist/index.cjs');
+const { WorkerQueue } = require('./dist/index.cjs');
 
 console.log('🧪 Testing CommonJS compatibility...\n');
 
 try {
   // Test import
-  if (typeof RunQ !== 'function') {
-    throw new Error('RunQ is not a function');
+  if (typeof WorkerQueue !== 'function') {
+    throw new Error('WorkerQueue is not a function');
   }
   console.log('✅ CommonJS import successful');
 
   // Test instantiation
-  const queue = new RunQ({ concurrency: 2 });
-  console.log('✅ RunQ instance created');
+  const queue = new WorkerQueue({ concurrency: 2 });
+  console.log('✅ WorkerQueue instance created');
 
   // Test methods exist
   const methods = ['enqueue', 'enqueueBatch', 'pause', 'resume'];

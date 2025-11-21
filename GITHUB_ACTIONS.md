@@ -62,14 +62,14 @@ Stellen Sie sicher, dass Ihre `package.json` folgende Felder hat:
 
 ```json
 {
-  "name": "runq",
+  "name": "worker-queue",
   "version": "0.0.1",
   "description": "A lightweight, flexible task queue for Node.js",
   "author": "Ihr Name",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IhrUsername/runq.git"
+    "url": "git+https://github.com/IhrUsername/worker-queue.git"
   },
   "keywords": [
     "queue",
@@ -124,8 +124,8 @@ npm version major  # 0.1.0 → 1.0.0
 Fügen Sie diese Badges zu Ihrer `README.md` hinzu:
 
 ```markdown
-[![CI](https://github.com/IhrUsername/runq/actions/workflows/ci.yml/badge.svg)](https://github.com/IhrUsername/runq/actions/workflows/ci.yml)
-[![npm version](https://badge.fury.io/js/runq.svg)](https://www.npmjs.com/package/runq)
+[![CI](https://github.com/IhrUsername/worker-queue/actions/workflows/ci.yml/badge.svg)](https://github.com/IhrUsername/worker-queue/actions/workflows/ci.yml)
+[![npm version](https://badge.fury.io/js/worker-queue.svg)](https://www.npmjs.com/package/worker-queue)
 ```
 
 ## Troubleshooting

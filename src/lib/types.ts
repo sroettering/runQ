@@ -1,5 +1,5 @@
 export type Task<T> = () => Promise<T>;
 
-export type RunQOptions = {
+export type WorkerQueueOptions = {
     concurrency: number;
 };

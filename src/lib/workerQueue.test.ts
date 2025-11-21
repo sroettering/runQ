@@ -1,10 +1,10 @@
 import { setTimeout as waitFor } from 'node:timers/promises';
-import { RunQ } from './runQ';
 import { Task } from './types';
+import { WorkerQueue } from './workerQueue';
 
-describe('RunQ', () => {
+describe('WorkerQueue', () => {
     it('should handle a single task that completes', async () => {
-        const queue = new RunQ({ concurrency: 1 });
+        const queue = new WorkerQueue({ concurrency: 1 });
 
         const result = await queue.enqueue(aTask({ result: 'Executed' }));
 
@@ -12,7 +12,7 @@ describe('RunQ', () => {
     });
 
     it('should handle a single task that fails', async () => {
-        const queue = new RunQ({ concurrency: 1 });
+        const queue = new WorkerQueue({ concurrency: 1 });
 
         const result = queue.enqueue(aTask({ rejection: 'Failed' }));
 
@@ -20,7 +20,7 @@ describe('RunQ', () => {
     });
 
     it('should handle multiple tasks coming in with delays (no concurrency)', async () => {
-        const queue = new RunQ<number>({ concurrency: 1 });
+        const queue = new WorkerQueue<number>({ concurrency: 1 });
         const expectedResults = [0, 1, 2];
         const resultsInOrder: number[] = [];
 
@@ -36,7 +36,7 @@ describe('RunQ', () => {
     });
 
     it('should handle multiple tasks coming in with delays (with concurrency)', async () => {
-        const queue = new RunQ<number>({ concurrency: 3 });
+        const queue = new WorkerQueue<number>({ concurrency: 3 });
         const expectedResults = [0, 2, 1];
         const resultsInOrder: number[] = [];
 
@@ -52,7 +52,7 @@ describe('RunQ', () => {
     });
 
     it('should execute a single task', async () => {
-        const queue = new RunQ({ concurrency: 1 });
+        const queue = new WorkerQueue({ concurrency: 1 });
 
         const result = await queue.enqueueBatch([aTask({ result: 'Executed' })]);
 
@@ -60,7 +60,7 @@ describe('RunQ', () => {
     });
 
     it('should execute multiple tasks without concurrency', async () => {
-        const queue = new RunQ({ concurrency: 1 });
+        const queue = new WorkerQueue({ concurrency: 1 });
 
         const result = await queue.enqueueBatch([
             aTask({ result: 'Executed 1' }),
@@ -72,7 +72,7 @@ describe('RunQ', () => {
     });
 
     it('should execute multiple tasks with concurrency', async () => {
-        const queue = new RunQ({ concurrency: 3 });
+        const queue = new WorkerQueue({ concurrency: 3 });
 
         const result = await queue.enqueueBatch([
             aTask({ result: 'Executed 1' }),
@@ -84,7 +84,7 @@ describe('RunQ', () => {
     });
 
     it('should execute multiple tasks with concurrency and timeouts', async () => {
-        const queue = new RunQ({ concurrency: 3 });
+        const queue = new WorkerQueue({ concurrency: 3 });
 
         const now = Date.now();
 
@@ -99,7 +99,7 @@ describe('RunQ', () => {
     });
 
     it('should execute multiple tasks and reject if any fail', async () => {
-        const queue = new RunQ({ concurrency: 3 });
+        const queue = new WorkerQueue({ concurrency: 3 });
 
         const result = queue.enqueueBatch([
             aTask({ result: 'Executed 1', delay: 5 }),
@@ -111,7 +111,7 @@ describe('RunQ', () => {
     });
 
     it('should only reject results from one queue call', async () => {
-        const queue = new RunQ({ concurrency: 3 });
+        const queue = new WorkerQueue({ concurrency: 3 });
 
         const result1 = queue.enqueueBatch([
             aTask({ result: 'Executed 1', delay: 5 }),
@@ -128,7 +128,7 @@ describe('RunQ', () => {
     });
 
     it('should be able to pause and resume the queue', async () => {
-        const queue = new RunQ({ concurrency: 1 });
+        const queue = new WorkerQueue({ concurrency: 1 });
         queue.pause();
         const now = Date.now();
         setTimeout(() => queue.resume(), 100);
@@ -140,7 +140,7 @@ describe('RunQ', () => {
     });
 
     it('should not interrupt running tasks when queue is paused', async () => {
-        const queue = new RunQ({ concurrency: 1 });
+        const queue = new WorkerQueue({ concurrency: 1 });
         const now = Date.now();
         setTimeout(() => queue.pause(), 50);
 
