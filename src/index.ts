@@ -1,2 +1,2 @@
 export * from './lib/types';
-export * from './lib/runQ';
+export * from './lib/workerQueue';

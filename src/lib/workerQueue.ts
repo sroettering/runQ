@@ -1,5 +1,5 @@
 import { debug } from 'node:util';
-import { RunQOptions, Task } from './types';
+import { Task, WorkerQueueOptions } from './types';
 import { Worker } from './worker';
 
 /**
@@ -9,14 +9,18 @@ import { Worker } from './worker';
  *
  * @template T The type of the result returned by tasks in the queue
  */
-export class RunQ<T> {
+export class WorkerQueue<T> {
     private queuedTasks: Array<Worker<T>> = [];
+
     private runningTasks = 0;
+
     private isRunning = true;
-    private readonly options: RunQOptions = {
+
+    private readonly options: WorkerQueueOptions = {
         concurrency: 5,
     };
-    private logger = debug('runQ');
+
+    private logger = debug('worker-queue');
 
     /**
      * Creates a new RunQ instance with the specified options.
@@ -24,7 +28,7 @@ export class RunQ<T> {
      * @param options Configuration options for the queue
      * @param options.concurrency Maximum number of tasks to run concurrently (default: 5)
      */
-    constructor(options: Partial<RunQOptions>) {
+    constructor(options: Partial<WorkerQueueOptions>) {
         this.options = {
             ...this.options,
             ...options,
@@ -115,6 +119,6 @@ export class RunQ<T> {
     }
 
     private debugLog(message: string) {
-        this.logger(`[RunQ | ${new Date().toISOString()}]: ${message}`);
+        this.logger(`[WorkerQueue | ${new Date().toISOString()}]: ${message}`);
     }
 }

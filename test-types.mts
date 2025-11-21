@@ -1,9 +1,9 @@
 // Test TypeScript types compilation
-import { RunQ } from './dist/index.js';
-import type { Task, RunQOptions } from './dist/index.js';
+import type { Task, WorkerQueueOptions } from './dist/index.js';
+import { WorkerQueue } from './dist/index.js';
 
 // Test type inference
-const queue = new RunQ<string>({ concurrency: 2 });
+const queue = new WorkerQueue<string>({ concurrency: 2 });
 
 // Test typed task
 const typedTask: Task<string> = async () => {
@@ -11,11 +11,11 @@ const typedTask: Task<string> = async () => {
 };
 
 // Test options type
-const options: RunQOptions = {
+const options: WorkerQueueOptions = {
   concurrency: 5
 };
 
-const queue2 = new RunQ<number>(options);
+const queue2 = new WorkerQueue<number>(options);
 
 // Test method types
 const result: Promise<string> = queue.enqueue(typedTask);
@@ -39,7 +39,7 @@ queue.enqueueBatch(tasks, 'FIFO');
 queue.enqueueBatch(tasks, 'LIFO');
 
 // Test with different return types
-const numberQueue = new RunQ<number>({ concurrency: 3 });
+const numberQueue = new WorkerQueue<number>({ concurrency: 3 });
 const numberTask: Task<number> = async () => 42;
 const numberResult: Promise<number> = numberQueue.enqueue(numberTask);
 

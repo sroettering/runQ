@@ -120,7 +120,7 @@ git push origin main --follow-tags
 
 - **CI Status:** Siehe Actions-Tab im GitHub Repository
 - **Publish Status:** Siehe Actions-Tab nach Tag-Push
-- **npm Package:** https://www.npmjs.com/package/runq
+- **npm Package:** https://www.npmjs.com/package/worker-queue
 
 ## 📖 Weitere Dokumentation
 

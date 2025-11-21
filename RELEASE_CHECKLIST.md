@@ -42,7 +42,7 @@ npm pack --dry-run
 # Lokaler Test
 npm link
 # In einem Test-Projekt:
-npm link runq
+npm link worker-queue
 ```
 
 - [ ] Package enthält alle notwendigen Dateien
@@ -78,7 +78,7 @@ git push origin main --follow-tags
 
 ```bash
 # Package testen
-npm install runq
+npm install worker-queue
 ```
 
 - [ ] Package ist auf npm verfügbar
@@ -92,10 +92,10 @@ Falls die Veröffentlichung fehlerhaft ist:
 
 ```bash
 # Innerhalb von 72 Stunden:
-npm unpublish runq@VERSION
+npm unpublish worker-queue@VERSION
 
 # Danach nur deprecate möglich:
-npm deprecate runq@VERSION "Reason for deprecation"
+npm deprecate worker-queue@VERSION "Reason for deprecation"
 ```
 
 ## Semantic Versioning Guide
